@@ -24,6 +24,7 @@ export default function Auth() {
                 "url(" + require("assets/img/register_bg_2.png").default + ")",
             }}
           ></div>
+          <Login/>
           <Switch>
             <Route path="/auth/login" exact component={Login} />
             <Route path="/auth/register" exact component={Register} />
