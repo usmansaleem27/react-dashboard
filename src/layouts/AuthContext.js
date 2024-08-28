@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const response = await axios.post('http://localhost:3007/login', { email, password });
+      const response = await axios.post('http://16.16.187.202:3007/login', { email, password });
       const { token } = response.data;
       localStorage.setItem('authToken', token);
       setIsAuthenticated(true);
