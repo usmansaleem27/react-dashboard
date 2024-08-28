@@ -3038,3 +3038,7 @@ select {
 
 @media (min-width: 1536px) {
 }
+
+.sign_in_bg_img{
+  background-image: url("../img/register_bg_2.png");
+}
