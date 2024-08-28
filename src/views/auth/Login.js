@@ -1,7 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useAuth } from "layouts/AuthContext";
 
@@ -16,9 +13,10 @@ export default function Login() {
     try {
      const res= await login(email, password);
      console.log("@23 resposne",res);
-      history.push('/home');  // Redirect after successful login
+     if (res) {
+      history.push('/admin/dashboard'); 
+    }
     } catch (error) {
-      // alert('Invalid credentials');
       console.log("@23 Invalid Credentials")
     }
   };

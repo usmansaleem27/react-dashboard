@@ -11,8 +11,8 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  // Check local storage on component mount
   useEffect(() => {
     const token = localStorage.getItem('authToken');
     if (token) {
@@ -20,9 +20,9 @@ export const AuthProvider = ({ children }) => {
     } else {
       setIsAuthenticated(false);
     }
-  }, []); // Empty dependency array
+    setLoading(false);
+  }, []); 
 
-  // Function to log in the user
   const login = async (email, password) => {
     try {
       const response = await axios.post('http://localhost:3007/login', { email, password });
@@ -33,15 +33,18 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       console.error('Login failed:', error);
       setIsAuthenticated(false);
-      throw error; // Ensure that the error is propagated
+      throw error;
     }
   };
 
-  // Function to log out the user manually
   const logout = () => {
     localStorage.removeItem('authToken');
     setIsAuthenticated(false);
   };
+
+  if (loading) {
+    return <div>Loading...</div>; // Or a loading spinner
+  }
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, login, logout }}>

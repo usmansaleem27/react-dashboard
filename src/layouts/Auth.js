@@ -23,7 +23,7 @@ export default function Auth() {
           <Login/>
             {/* <Route path="/auth/login" exact component={Login} /> */}
           <Switch>
-            <Route path="/auth/register" exact component={Register} />
+            {/* <Route path="/auth/register" exact component={Register} /> */}
             <Redirect from="/auth" to="/auth/login" />
           </Switch>
           <FooterSmall absolute />
